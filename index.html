@@ -1,0 +1,65 @@
+/* A4 print setup */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+/* Each "page" is exactly A4 */
+.page {
+  width: 210mm;
+  height: 297mm;
+  position: relative;
+  page-break-after: always;
+  break-after: page;
+  overflow: hidden;
+}
+
+/* Border close to page edges (safe ~6mm) */
+.frame {
+  position: absolute;
+  inset: 6mm;              /* distance from page edge */
+  border: 3mm solid #111;  /* frame thickness */
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+/* Big centered letter */
+.letter {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+
+  /* Make it as large as possible while still staying inside the frame */
+  font-size: 260mm; /* if you want bigger/smaller, tweak this */
+}
+
+/* Colors */
+.red   { color: #e53935; }
+.blue  { color: #1e88e5; }
+.yellow{ color: #fdd835; }
+.green { color: #43a047; }
+
+/* Screen preview helper: show pages centered with gaps */
+@media screen {
+  body {
+    background: #f3f3f3;
+    padding: 16px;
+  }
+  .page {
+    margin: 0 auto 16px auto;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+    background: #fff;
+  }
+}
